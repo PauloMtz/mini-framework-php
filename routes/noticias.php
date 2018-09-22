@@ -3,9 +3,10 @@ $this->get('noticias', function($arg) {
 	echo 'Últimas Notícias';
 });
 $this->get('noticias/{id}', function($arg) {
-	echo 'Notícia específica sobre alguma coisa';
-});
-$this->get('nome/{nome}', function($arg) {
-	echo 'Nome: '.$arg['nome'];
+	$templ = $this->core->loadModule('template');
+
+	$num = array('numero' => $arg['id']);
+
+	$templ->render('teste', $num);
 });
 ?>

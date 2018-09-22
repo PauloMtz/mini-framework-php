@@ -6,6 +6,7 @@
 
 class Router {
 
+	private $core;
 	private $get;
 	private $post;
 
@@ -24,6 +25,7 @@ class Router {
 
 	// carrega a rota vinda do Core
 	public function load() {
+		$this->core = Core::getInstance();
 		// carrega o arquivo de rota padrão (default.php)
 		$this->loadRouteFile('default');
 		return $this;
