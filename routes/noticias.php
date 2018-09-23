@@ -1,22 +1,44 @@
 <?php
-$this->get('noticias', function($arg) {
-	echo 'Últimas Notícias';
-});
-$this->get('noticias/{id}', function($arg) {
 
+/*
+* arquivo de rotas para notícias
+* essa primeira rota carrega a página inicial
+* pode-se criar outras rotas para acessar outras páginas
+*/
+
+$this->get('noticias', function($arg) {
+	
 	// carrega o módulo Template
 	$templ = $this->core->loadModule('template');
 
-	// carrega o módulo Database
-	$db = $this->core->loadModule('database');
+	// carrega o módulo de notícias
+	$news = $this->core->loadModule('noticias');
 
-	// testando consulta no banco
-	$sql = $db->query("SELECT nome, email FROM usuarios");
-	$array = $sql->fetchAll();
-	print_r($array);
+	$dados = array();
 
-	// carrega o template teste.php, localizado na pasta templates
+	// o método getNoticias obtém $sql do módulo de notícias
+	// $dados carrega noticias para enviar para noticias-lista.php
+	$dados['noticias'] = $news->getNoticias();
+
+	// carrega o template noticias-lista.php, localizado na pasta templates, e envia $dados
 	// a pasta templates é utilizada para os arquivos de visualização do usuário
-	$templ->render('teste');
+	$templ->render('noticias-lista', $dados);
+});
+
+// essa rota carrega outra página (detalhes da notícia)
+$this->get('noticias/{id}', function($arg) {
+
+	$templ = $this->core->loadModule('template');
+	$news = $this->core->loadModule('noticias');
+
+	$dados = array();
+	$dados['info'] = $news->getInfo($arg['id']);
+
+	$templ->render('noticia-detalhe', $dados);
+});
+
+// rota post (para envio de formulário)
+$this->post('noticias/', function($arg) {
+	// code...
 });
 ?>

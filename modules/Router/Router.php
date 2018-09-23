@@ -99,7 +99,7 @@ class Router {
 		$this->get[$pattern] = $function;
 	}
 
-	public function post() {
+	public function post($pattern, $function) {
 		$this->post[$pattern] = $function;
 	}
 }

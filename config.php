@@ -9,7 +9,7 @@ $config = array(
 		'host' => '127.0.0.1',
 		'user' => 'root',
 		'pass' => 'toor.971',
-		'db_name' => 'cadastro_crud'
+		'db_name' => 'noticias'
 	)
 );
 ?>

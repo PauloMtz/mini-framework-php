@@ -55,9 +55,11 @@ class Database {
 		return $this->pdo_connect->prepare($sql);
 	}
 
-	// executa executes
+	// NÃO PRECISA - será usado no $sql no model
+	/*
 	public function execute($array) {
 		return $this->pdo_connect->execute($array);
 	}
+	*/
 }
 ?>
